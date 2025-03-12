@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Evolution Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <h1>Neural Evolution</h1>
+            <div class="status-panel">
+                <div class="status-item">
+                    <div class="status-icon network-icon"></div>
+                    <div class="status-text">
+                        <div class="status-label">Algorithms</div>
+                        <div class="status-value" id="network-count">1</div>
+                    </div>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon checkpoint-icon"></div>
+                    <div class="status-text">
+                        <div class="status-label">Checkpoints</div>
+                        <div class="status-value" id="checkpoint-count">1</div>
+                    </div>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon intelligence-icon"></div>
+                    <div class="status-text">
+                        <div class="status-label">Intelligence</div>
+                        <div class="status-value" id="intelligence-level">1</div>
+                    </div>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon generation-icon"></div>
+                    <div class="status-text">
+                        <div class="status-label">Generation</div>
+                        <div class="status-value" id="generation-count">1</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="control-panel">
+                <div class="evolution-controls">
+                    <h3>Evolution Controls</h3>
+                    <button id="start-evolution" class="primary-btn">Start Evolution</button>
+                    <button id="pause-evolution" class="secondary-btn" disabled>Pause Evolution</button>
+                    <button id="reset-simulation" class="danger-btn">Reset Simulation</button>
+                </div>
+                
+                <div class="simulation-speed">
+                    <h3>Simulation Speed</h3>
+                    <div class="slider-container">
+                        <input type="range" min="1" max="10" value="5" id="speed-slider">
+                        <div class="slider-value" id="speed-value">5x</div>
+                    </div>
+                </div>
+                
+                <div class="manual-controls">
+                    <h3>Manual Controls</h3>
+                    <button id="add-network" class="action-btn">Add Algorithm</button>
+                    <button id="add-checkpoint" class="action-btn">Add Checkpoint</button>
+                    <button id="connect-nodes" class="action-btn">Connect Nodes</button>
+                    <button id="train-all" class="action-btn">Train All</button>
+                </div>
+            </div>
+            
+            <div class="log-panel">
+                <h3>Evolution Log</h3>
+                <div id="log-container">
+                    <div class="log-entry">Simulation initialized with primary algorithm</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="visualization-container">
+            <div id="visualization"></div>
+            <div class="zoom-controls">
+                <button id="zoom-in">+</button>
+                <button id="zoom-out">-</button>
+                <button id="zoom-reset">⟲</button>
+            </div>
+            <div class="visualization-info" id="vis-info">
+                <span>Click and drag to pan. Use mouse wheel to zoom.</span>
+            </div>
+        </div>
+        
+        <div class="info-panel">
+            <div class="info-header">
+                <h3>Selected Node</h3>
+                <span class="node-type" id="selected-type">None selected</span>
+            </div>
+            
+            <div id="node-info" class="node-details">
+                <p class="no-selection">Click on a node to see details</p>
+            </div>
+            
+            <div class="node-actions" id="node-actions">
+                <!-- Dynamic actions will appear here when a node is selected -->
+            </div>
+            
+            <div class="capabilities-panel" id="capabilities-panel">
+                <h3>Capabilities</h3>
+                <div id="capabilities-list">
+                    <!-- Will be filled dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
