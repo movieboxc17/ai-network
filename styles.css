@@ -1,0 +1,591 @@
+:root {
+    --primary-color: #0cf;
+    --primary-dark: #08a;
+    --secondary-color: #f80;
+    --background-dark: #111;
+    --panel-bg: #1a1a1a;
+    --panel-light: #222;
+    --text-light: #eee;
+    --text-dim: #aaa;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --error-color: #f44336;
+    --network-gradient: linear-gradient(145deg, #0cf, #08a);
+    --checkpoint-gradient: linear-gradient(145deg, #fc0, #f80);
+    --evolution-gradient: linear-gradient(to right, #0cf, #f0f);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    overflow: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    height: 100vh;
+}
+
+/* Left control panel */
+.controls {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--panel-bg);
+    border-right: 1px solid #333;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.controls h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    background: var(--evolution-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 10px 0;
+}
+
+.status-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--panel-light);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.status-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.network-icon {
+    background: var(--network-gradient);
+}
+
+.checkpoint-icon {
+    background: var(--checkpoint-gradient);
+}
+
+.intelligence-icon {
+    background: linear-gradient(145deg, #f0f, #90f);
+}
+
+.generation-icon {
+    background: linear-gradient(145deg, #0fc, #0a8);
+}
+
+.status-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.status-label {
+    font-size: 0.8em;
+    color: var(--text-dim);
+}
+
+.status-value {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.control-panel {
+    background-color: var(--panel-light);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.control-panel h3 {
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: var(--primary-color);
+}
+
+.evolution-controls, .simulation-speed, .manual-controls {
+    margin-bottom: 20px;
+}
+
+.primary-btn, .secondary-btn, .danger-btn, .action-btn {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-family: 'Orbitron', sans-serif;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9em;
+    display: block;
+    width: 100%;
+}
+
+.primary-btn {
+    background: var(--network-gradient);
+    color: white;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.danger-btn {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.action-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-light);
+}
+
+button:hover:not([disabled]) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+button:active:not([disabled]) {
+    transform: translateY(0);
+}
+
+button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="range"] {
+    flex-grow: 1;
+    height: 5px;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+}
+
+.slider-value {
+    font-family: 'Orbitron', sans-serif;
+    min-width: 40px;
+    text-align: center;
+}
+
+.log-panel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--panel-light);
+    border-radius: 8px;
+    padding: 15px;
+    overflow: hidden;
+}
+
+#log-container {
+    overflow-y: auto;
+    flex-grow: 1;
+    font-family: monospace;
+    font-size: 0.9em;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.log-entry {
+    margin-bottom: 5px;
+    color: var(--text-dim);
+    border-left: 3px solid var(--primary-color);
+    padding-left: 7px;
+}
+
+.log-entry.warning {
+    border-left-color: var(--warning-color);
+}
+
+.log-entry.error {
+    border-left-color: var(--error-color);
+}
+
+.log-entry.success {
+    border-left-color: var(--success-color);
+}
+
+/* Main visualization area */
+.visualization-container {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+
+#visualization {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-image: 
+        radial-gradient(circle at 20px 20px, rgba(100, 200, 255, 0.03) 2px, transparent 2px),
+        radial-gradient(circle at 40px 40px, rgba(100, 200, 255, 0.03) 2px, transparent 2px);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+}
+
+.zoom-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.zoom-controls button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.visualization-info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    color: var(--text-dim);
+}
+
+/* Nodes and connections styling */
+/* Continuing with nodes and connections styling */
+.node {
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 2;
+    border: 2px solid transparent;
+}
+
+.node.primary {
+    border: 2px solid #fff;
+}
+
+.algorithm-node {
+    background: var(--network-gradient);
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
+}
+
+.checkpoint-node {
+    background: var(--checkpoint-gradient);
+    box-shadow: 0 0 20px rgba(255, 160, 0, 0.5);
+}
+
+.connection {
+    position: absolute;
+    transform-origin: 0 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.connection.active {
+    opacity: 1;
+}
+
+.connection.data-transfer {
+    opacity: 1;
+    box-shadow: 0 0 10px currentColor;
+}
+
+/* Different connection types */
+.knowledge-connection {
+    background-color: rgba(0, 255, 200, 0.5);
+}
+
+.learning-connection {
+    background-color: rgba(255, 0, 255, 0.5);
+}
+
+.resource-connection {
+    background-color: rgba(0, 200, 255, 0.5);
+}
+
+.pulse {
+    animation: pulse 1.5s infinite;
+}
+
+.grow {
+    animation: grow 0.5s forwards;
+}
+
+.signal {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    z-index: 3;
+    filter: blur(2px);
+}
+
+.knowledge-signal {
+    background-color: rgba(0, 255, 200, 0.8);
+    box-shadow: 0 0 8px rgba(0, 255, 200, 0.8);
+}
+
+.learning-signal {
+    background-color: rgba(255, 0, 255, 0.8);
+    box-shadow: 0 0 8px rgba(255, 0, 255, 0.8);
+}
+
+.resource-signal {
+    background-color: rgba(0, 200, 255, 0.8);
+    box-shadow: 0 0 8px rgba(0, 200, 255, 0.8);
+}
+
+/* Right info panel */
+.info-panel {
+    background-color: var(--panel-bg);
+    border-left: 1px solid #333;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.node-type {
+    background-color: var(--panel-light);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+}
+
+.node-details {
+    background-color: var(--panel-light);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.node-property {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.property-name {
+    color: var(--text-dim);
+}
+
+.property-value {
+    font-weight: bold;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin-top: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.progress-fill.intelligence {
+    background: linear-gradient(to right, #08a, #0cf);
+}
+
+.progress-fill.learning {
+    background: linear-gradient(to right, #f0f, #90f);
+}
+
+.progress-fill.teaching {
+    background: linear-gradient(to right, #0a8, #0fc);
+}
+
+.no-selection {
+    color: var(--text-dim);
+    text-align: center;
+    padding: 20px 0;
+}
+
+.node-actions {
+    display: none;
+    background-color: var(--panel-light);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.node-actions.active {
+    display: block;
+}
+
+.action-button {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 8px;
+    background-color: var(--panel-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-button:hover {
+    background-color: rgba(0, 200, 255, 0.1);
+    border-color: var(--primary-color);
+}
+
+.capabilities-panel {
+    background-color: var(--panel-light);
+    border-radius: 8px;
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.capability-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+}
+
+.capability-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.capability-details {
+    flex-grow: 1;
+}
+
+.capability-name {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.capability-desc {
+    font-size: 0.8em;
+    color: var(--text-dim);
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px currentColor;
+    }
+    50% {
+        box-shadow: 0 0 25px currentColor;
+    }
+    100% {
+        box-shadow: 0 0 5px currentColor;
+    }
+}
+
+@keyframes grow {
+    from {
+        transform: scale(0.7);
+        opacity: 0.5;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 250px 1fr 250px;
+    }
+}
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 220px 1fr 220px;
+    }
+}
