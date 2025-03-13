@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Network Algorithm Visualization</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AI Network Algorithm Visualization</h1>
+      <div class="controls">
+        <button id="start-btn">Start Simulation</button>
+        <button id="pause-btn">Pause</button>
+        <div class="stats">
+          <div>Main Algorithm Status: <span id="main-status">Inactive</span></div>
+          <div>Sub-Algorithms: <span id="sub-count">0</span>/500</div>
+          <div>Learning Cycles: <span id="cycles">0</span></div>
+        </div>
+      </div>
+    </header>
+    
+    <div class="visualization-container">
+      <div id="zoom-controls">
+        <button id="zoom-in">+</button>
+        <button id="zoom-out">-</button>
+        <button id="reset-view">Reset View</button>
+      </div>
+      <canvas id="visualization"></canvas>
+    </div>
+    
+    <div class="info-panel">
+      <h3>Selected Algorithm Info</h3>
+      <div id="algorithm-info">
+        <p>Click on a hexagon to view algorithm details</p>
+      </div>
+    </div>
+  </div>
+  
+  <script src="scripts/algorithm.js"></script>
+  <script src="scripts/visualization.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
